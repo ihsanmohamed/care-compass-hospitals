@@ -1,0 +1,54 @@
+/* Form Styles */
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+form input,
+form select,
+form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+form input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+form input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+form label {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+form textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+form .error {
+    color: red;
+    font-size: 0.875rem;
+}
+
+form .success {
+    color: green;
+    font-size: 1rem;
+}
