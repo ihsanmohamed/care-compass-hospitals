@@ -1,25 +1,52 @@
-<?php include('../includes/header.php'); ?>
+<!-- Navbar Section -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <!-- Brand/Logo -->
+        <a class="navbar-brand" href="index.php">Care Compass Hospitals</a>
+        
+        <!-- Navbar Toggler (for mobile) -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <!-- Navbar Links -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link <?php echo (basename($_SERVER['PHP_SELF']) == 'index.php') ? 'active' : ''; ?>" href="logout.php">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
 <div class="container my-5">
-    <h1 class="text-center text-primary">Sign In to Your Account</h1>
+    <h1 class="text-center text-primary mb-4">Sign In to Your Account</h1>
     
     <!-- Sign In Form -->
     <div class="row justify-content-center">
-        <div class="col-md-6">
-            <form action="login_process.php" method="POST">
+        <div class="col-md-6 col-lg-4">
+            <form action="login_process.php" method="POST" class="p-4 border rounded shadow-sm bg-light">
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email address</label>
+                    <label for="email" class="form-label">Email Address</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
                 </div>
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="rememberMe">
+                        <label class="form-check-label" for="rememberMe">Remember me</label>
+                    </div>
+                    <a href="#" class="text-decoration-none small">Forgot password?</a>
+                </div>
                 <button type="submit" class="btn btn-primary w-100">Sign In</button>
             </form>
 
             <div class="text-center mt-3">
-                <p>Don't have an account? <a href="signup.php" class="text-decoration-none">Sign up here</a></p>
+                <p class="mb-0">Don't have an account? <a href="signup.php" class="text-decoration-none">Sign up here</a></p>
             </div>
         </div>
     </div>
@@ -47,5 +74,38 @@
         color: white;
         text-align: center;
         padding: 20px 0;
+    }
+
+    .form-check-input {
+        margin-top: 3px;
+    }
+
+    /* Styling the background of the login box */
+    .form-control {
+        border-radius: 8px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Enhancing button and form layout */
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        border-radius: 8px;
+        padding: 12px 20px;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+    }
+
+    /* Adjusting text links and alignment */
+    a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
     }
 </style>

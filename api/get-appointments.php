@@ -1,22 +1,23 @@
 <?php
-include('../includes/dbconnect.php');
-
 header('Content-Type: application/json');
+require_once '../config/dbconnect.php';
 
-// Get appointments from the database
-$sql = "SELECT * FROM appointments ORDER BY appointment_date DESC";
-$result = $conn->query($sql);
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $user_id = isset($_GET['user_id']) ? intval($_GET['user_id']) : 0;
 
-$appointments = array();
+    $stmt = $conn->prepare("SELECT * FROM appointments WHERE user_id = ? AND appointment_date >= CURDATE()");
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
+    $appointments = [];
+    while ($row = $result->fetch_assoc()) {
         $appointments[] = $row;
     }
-    echo json_encode($appointments);
-} else {
-    echo json_encode(['message' => 'No appointments found.']);
-}
 
-$conn->close();
+    echo json_encode(['status' => 'success', 'appointments' => $appointments]);
+} else {
+    http_response_code(405);
+    echo json_encode(['status' => 'error', 'message' => 'Method not allowed']);
+}
 ?>

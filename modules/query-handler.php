@@ -1,15 +1,16 @@
 <?php
-// query-handler.php
+// Generic function to execute SQL queries
+require_once '../config/dbconnect.php';
 
-// Include the database connection
-include('../includes/dbconnect.php');
-
-// Function to submit user queries
-function submitQuery($name, $email, $message) {
+function executeQuery($sql) {
     global $conn;
-    $sql = "INSERT INTO user_queries (name, email, message) VALUES (?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sss", $name, $email, $message);
-    return $stmt->execute();
+    return $conn->query($sql);
+}
+
+// Function for querying and returning a single result
+function fetchSingleResult($sql) {
+    global $conn;
+    $result = $conn->query($sql);
+    return $result->fetch_assoc();
 }
 ?>

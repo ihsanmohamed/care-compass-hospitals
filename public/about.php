@@ -1,10 +1,10 @@
-<?php include('../includes/header.php'); ?>
+<?php include('../includes/navbar.php'); ?>
 
 <div class="container my-5">
     <!-- Heading Section -->
     <div class="text-center mb-5">
         <h1 class="display-4 text-primary mb-4">About Care Compass Hospitals</h1>
-        <p class="lead">At Care Compass Hospitals, we are dedicated to providing high-quality healthcare services to individuals and families. With state-of-the-art technology and compassionate care, we ensure that every patient receives the best possible treatment.</p>
+        <p class="lead text-muted">At Care Compass Hospitals, we are dedicated to providing high-quality healthcare services to individuals and families. With state-of-the-art technology and compassionate care, we ensure that every patient receives the best possible treatment.</p>
     </div>
 
     <!-- Our Mission Section -->
@@ -15,7 +15,7 @@
                 <p>Our mission is to provide comprehensive healthcare that meets the needs of our community. We are committed to offering advanced treatments, providing compassionate care, and ensuring the well-being of all our patients.</p>
             </div>
             <div class="col-md-6">
-                <img src="../assets/images/mission-image.jpg" class="img-fluid rounded" alt="Our Mission Image">
+                <img src="../assets/images/istockphoto-1344779917-612x612.jpg" class="img-fluid rounded shadow-lg" alt="Our Mission Image">
             </div>
         </div>
     </section>
@@ -28,7 +28,7 @@
                 <p>To be a leading healthcare provider that sets the standard for excellence in patient care, innovative treatments, and medical research. We envision a future where our hospitals continue to be recognized for exceptional care, dedication to patient satisfaction, and a commitment to improving lives.</p>
             </div>
             <div class="col-md-6 order-md-1">
-                <img src="../assets/images/vision-image.jpg" class="img-fluid rounded" alt="Our Vision Image">
+                <img src="../assets/images/istockphoto-1344779917-612x612.jpg" class="img-fluid rounded shadow-lg" alt="Our Vision Image">
             </div>
         </div>
     </section>
@@ -39,7 +39,7 @@
         <p>At Care Compass Hospitals, we are guided by the following core values:</p>
         <div class="row">
             <div class="col-md-4 mb-4">
-                <div class="card text-center shadow-lg">
+                <div class="card text-center shadow-lg border-light rounded">
                     <div class="card-body">
                         <i class="fas fa-heartbeat fa-3x text-danger mb-3"></i>
                         <h5 class="card-title">Compassion</h5>
@@ -48,7 +48,7 @@
                 </div>
             </div>
             <div class="col-md-4 mb-4">
-                <div class="card text-center shadow-lg">
+                <div class="card text-center shadow-lg border-light rounded">
                     <div class="card-body">
                         <i class="fas fa-trophy fa-3x text-success mb-3"></i>
                         <h5 class="card-title">Excellence</h5>
@@ -57,7 +57,7 @@
                 </div>
             </div>
             <div class="col-md-4 mb-4">
-                <div class="card text-center shadow-lg">
+                <div class="card text-center shadow-lg border-light rounded">
                     <div class="card-body">
                         <i class="fas fa-flask fa-3x text-primary mb-3"></i>
                         <h5 class="card-title">Innovation</h5>
@@ -77,7 +77,7 @@
             <!-- Doctor 1 -->
             <div class="col">
                 <div class="card shadow-sm border-light rounded">
-                    <img src="../assets/images/doctor1.jpg" class="card-img-top" alt="Dr. John Doe">
+                    <img src="../assets/images/Hospitals_Web-775x500.jpg" class="card-img-top" alt="Dr. John Doe">
                     <div class="card-body">
                         <h5 class="card-title">Dr. John Doe</h5>
                         <p class="card-text"><strong>Specialty:</strong> Cardiology</p>
@@ -88,7 +88,7 @@
             <!-- Doctor 2 -->
             <div class="col">
                 <div class="card shadow-sm border-light rounded">
-                    <img src="../assets/images/doctor2.jpg" class="card-img-top" alt="Dr. Jane Smith">
+                    <img src="../assets/images/1595043879529.jpeg" class="card-img-top" alt="Dr. Jane Smith">
                     <div class="card-body">
                         <h5 class="card-title">Dr. Jane Smith</h5>
                         <p class="card-text"><strong>Specialty:</strong> Orthopedics</p>
@@ -96,7 +96,29 @@
                     </div>
                 </div>
             </div>
+            <div class="col">
+                <div class="card shadow-sm border-light rounded">
+                    <img src="../assets/images/Hospitals_Web-775x500.jpg" class="card-img-top" alt="Dr. John Doe">
+                    <div class="card-body">
+                        <h5 class="card-title">Dr. David Doe</h5>
+                        <p class="card-text"><strong>Specialty:</strong> Cardiology</p>
+                        <p class="card-text">Dr. John Doe is a renowned cardiologist with over 20 years of experience in treating heart conditions. He is dedicated to providing exceptional care to all his patients.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Doctor 2 -->
+            <div class="col">
+                <div class="card shadow-sm border-light rounded">
+                    <img src="../assets/images/1595043879529.jpeg" class="card-img-top" alt="Dr. Jane Smith">
+                    <div class="card-body">
+                        <h5 class="card-title">Dr. Villiam Smith</h5>
+                        <p class="card-text"><strong>Specialty:</strong> Orthopedics</p>
+                        <p class="card-text">Dr. Jane Smith specializes in orthopedic surgeries and rehabilitation. With her expertise, she helps patients recover from musculoskeletal injuries and surgeries.</p>
+                    </div>
+                </div>
+            </div>
         </div>
+        
 
         <div class="text-center mt-4">
             <a href="services.php" class="btn btn-primary btn-lg">Learn More About Our Doctors</a>
@@ -125,7 +147,7 @@
         padding: 20px 0;
     }
 
-    /* Bootstrap utility classes for spacing and color */
+    /* Custom text and button styling */
     .text-primary {
         color: #007bff !important;
     }
@@ -143,11 +165,11 @@
     /* Styling the doctor's profile images */
     .card-img-top {
         object-fit: cover;
-        height: 200px;
+        height: 250px;
     }
 
     .card-body {
-        padding: 1.25rem;
+        padding: 1.5rem;
     }
 
     .card-title {
@@ -155,14 +177,15 @@
         font-weight: bold;
     }
 
-    .list-group-item {
-        font-size: 1rem;
+    .lead {
+        font-size: 1.2rem;
+        color: #6c757d;
     }
 
-    /* Custom Styling for Icons in Values Section */
+    /* Custom styling for Icons in Values Section */
     .card-body i {
         color: #007bff;
-        margin-bottom: 10px;
+        margin-bottom: 15px;
     }
 
     /* Responsive adjustments */

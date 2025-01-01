@@ -1,22 +1,18 @@
 <?php
-include('../includes/dbconnect.php');
-
 header('Content-Type: application/json');
+require_once '../config/dbconnect.php';
 
-// Get services from the database
-$sql = "SELECT * FROM services ORDER BY service_name";
-$result = $conn->query($sql);
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $result = $conn->query("SELECT * FROM services");
 
-$services = array();
-
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
+    $services = [];
+    while ($row = $result->fetch_assoc()) {
         $services[] = $row;
     }
-    echo json_encode($services);
-} else {
-    echo json_encode(['message' => 'No services found.']);
-}
 
-$conn->close();
+    echo json_encode(['status' => 'success', 'services' => $services]);
+} else {
+    http_response_code(405);
+    echo json_encode(['status' => 'error', 'message' => 'Method not allowed']);
+}
 ?>

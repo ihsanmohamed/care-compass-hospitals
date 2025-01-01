@@ -1,4 +1,4 @@
-<?php include('../includes/header.php'); ?>
+<?php include('../includes/navbar.php'); ?>
 
 <div class="container my-5">
     <!-- Page Header -->

@@ -1,77 +1,54 @@
-<?php
-// Database connection settings for XAMPP
-$host = 'localhost';
-$username = 'root';
-$password = ''; // No password for XAMPP by default
-$dbname = 'care_compass'; // Replace with your database name
-
-// Create a connection to the database
-$conn = new mysqli($host, $username, $password, $dbname);
-
-// Check the connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Get the form data
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $confirmPassword = $_POST['confirm-password'];
-
-    // Check if passwords match
-    if ($password !== $confirmPassword) {
-        echo "<script>alert('Passwords do not match!');</script>";
-    } else {
-        // Hash the password before saving
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-        // Prepare the SQL query to insert the user into the database
-        $stmt = $conn->prepare("INSERT INTO users (email, password) VALUES (?, ?)");
-        $stmt->bind_param("ss", $email, $hashedPassword);
-
-        // Execute the query and check if the insertion was successful
-        if ($stmt->execute()) {
-            echo "<script>alert('Account created successfully!'); window.location.href='login.php';</script>";
-        } else {
-            echo "<script>alert('Error: Could not create account.');</script>";
-        }
-
-        // Close the prepared statement
-        $stmt->close();
-    }
-}
-
-// Close the database connection
-$conn->close();
-?>
-
-<?php include('../includes/header.php'); ?>
-
+<!-- Navbar Section -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <!-- Brand/Logo -->
+        <a class="navbar-brand" href="index.php">Care Compass Hospitals</a>
+        
+        <!-- Navbar Toggler (for mobile) -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <!-- Navbar Links -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link <?php echo (basename($_SERVER['PHP_SELF']) == 'index.php') ? 'active' : ''; ?>" href="logout.php">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 <div class="container my-5">
-    <h1 class="text-center text-primary">Create an Account</h1>
-
-    <!-- Sign-Up Form -->
+    <h1 class="text-center text-primary mb-4">Create Your Account</h1>
+    
+    <!-- Sign Up Form -->
     <div class="row justify-content-center">
-        <div class="col-md-6">
-            <form action="signup.php" method="POST">
+        <div class="col-md-6 col-lg-4">
+            <form action="signup_process.php" method="POST" class="p-4 border rounded shadow-sm bg-light">
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email address</label>
+                    <label for="email" class="form-label">Email Address</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Create a password" required>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
                 </div>
                 <div class="mb-3">
-                    <label for="confirm-password" class="form-label">Confirm Password</label>
-                    <input type="password" class="form-control" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+                    <label for="confirm_password" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm your password" required>
                 </div>
-                <button type="submit" class="btn btn-success w-100">Sign Up</button>
+                <div class="form-check mb-4">
+                    <input type="checkbox" class="form-check-input" id="agreeTerms" required>
+                    <label class="form-check-label" for="agreeTerms">
+                        I agree to the <a href="#" class="text-decoration-none">terms and conditions</a>
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Sign Up</button>
             </form>
 
             <div class="text-center mt-3">
-                <p>Already have an account? <a href="login.php" class="text-decoration-none">Sign in here</a></p>
+                <p class="mb-0">Already have an account? <a href="login.php" class="text-decoration-none">Sign in here</a></p>
             </div>
         </div>
     </div>
@@ -87,6 +64,7 @@ $conn->close();
     /* Ensures the footer is always at the bottom of the page */
     html, body {
         height: 100%;
+        margin: 0;
     }
     .container {
         min-height: 80vh; /* Ensures content takes up at least 80% of the height */
@@ -99,5 +77,59 @@ $conn->close();
         color: white;
         text-align: center;
         padding: 20px 0;
+    }
+
+    /* Form Styling */
+    .form-control {
+        border-radius: 8px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        transition: border-color 0.3s;
+    }
+    
+    .form-control:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+
+    /* Button Styling */
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        border-radius: 8px;
+        padding: 12px 20px;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+    }
+
+    /* Adjusting text links and alignment */
+    a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    /* Styling the agreement checkbox */
+    .form-check-input {
+        margin-top: 5px;
+    }
+
+    .form-check-label {
+        font-size: 14px;
+    }
+
+    /* Responsive Styling */
+    @media (max-width: 767px) {
+        .form-label {
+            font-size: 0.9rem;
+        }
+        .btn-primary {
+            padding: 12px 15px;
+        }
     }
 </style>

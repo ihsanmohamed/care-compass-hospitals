@@ -2,7 +2,7 @@
 // Start session and check if the user is logged in (optional)
 session_start();
 
-include('../includes/header.php');
+include('../includes/navbar.php');
 
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

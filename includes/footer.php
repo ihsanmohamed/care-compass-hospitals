@@ -11,19 +11,22 @@
             <a href="privacy.php" class="footer-link">Privacy Policy</a> | 
             <a href="terms.php" class="footer-link">Terms of Service</a>
         </div>
+<!-- Bootstrap Icons CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
-        <!-- Social Media Section (Optional) -->
-        <div class="footer-social">
-            <a href="#" class="social-link" aria-label="Facebook" target="_blank">
-                <img src="assets/images/facebook-icon.png" alt="Facebook">
-            </a>
-            <a href="#" class="social-link" aria-label="Twitter" target="_blank">
-                <img src="assets/images/twitter-icon.png" alt="Twitter">
-            </a>
-            <a href="#" class="social-link" aria-label="Instagram" target="_blank">
-                <img src="assets/images/instagram-icon.png" alt="Instagram">
-            </a>
-        </div>
+        <!-- Social Media Section -->
+<div class="footer-social">
+    <a href="#" class="social-link" aria-label="Facebook" target="_blank">
+        <i class="bi bi-facebook fs-3"></i>
+    </a>
+    <a href="#" class="social-link" aria-label="Twitter" target="_blank">
+        <i class="bi bi-twitter fs-3"></i>
+    </a>
+    <a href="#" class="social-link" aria-label="Instagram" target="_blank">
+        <i class="bi bi-instagram fs-3"></i>
+    </a>
+</div>
+
     </div>
 </footer>
 

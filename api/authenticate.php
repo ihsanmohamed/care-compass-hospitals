@@ -1,22 +1,28 @@
 <?php
-session_start();
-include('../includes/dbconnect.php'); // Include database connection
+header('Content-Type: application/json');
+require_once '../config/dbconnect.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
 
-    // Simple query to check user credentials (assuming you have a users table)
-    $query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
-    $result = mysqli_query($conn, $query);
-    
-    if (mysqli_num_rows($result) == 1) {
-        // User found, start session and redirect
-        $_SESSION['username'] = $username;
-        header("Location: dashboard.php");
+    $stmt = $conn->prepare("SELECT id, password FROM users WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
+
+    if ($user && password_verify($password, $user['password'])) {
+        // Generate token or session
+        echo json_encode(['status' => 'success', 'message' => 'Authentication successful', 'user_id' => $user['id']]);
     } else {
-        // User not found, show error message
-        echo "<p>Invalid username or password.</p>";
+        http_response_code(401);
+        echo json_encode(['status' => 'error', 'message' => 'Invalid email or password']);
     }
+
+    $stmt->close();
+} else {
+    http_response_code(405);
+    echo json_encode(['status' => 'error', 'message' => 'Method not allowed']);
 }
 ?>
